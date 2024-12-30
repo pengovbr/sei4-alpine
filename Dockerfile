@@ -17,6 +17,7 @@ RUN apk add --no-cache \
       php7-gd \
       php7-gettext \
       php7-gmp \
+      php7-iconv \
       php7-imap \
       php7-intl \
       php7-ldap \
@@ -33,6 +34,7 @@ RUN apk add --no-cache \
       php7-pecl-xdebug \
       php7-pgsql \
       php7-pspell \
+      php7-simplexml \
       php7-shmop \
       php7-snmp \
       php7-soap \
@@ -62,8 +64,7 @@ RUN apk add --no-cache openjdk8
 COPY assets/sei.ini /etc/php7/conf.d/99_sei.ini
 COPY assets/xdebug.ini /etc/php7/conf.d/99_xdebug.ini
 COPY assets/sei.conf /etc/apache2/conf.d/
-COPY assets/cron.conf /tmp/cron.conf
-RUN  cat /tmp/cron.conf >> /etc/crontabs/root 
+COPY assets/cron.conf /etc/crontabs/apache
 
 # Pasta para arquivos externos
 RUN mkdir -p /var/sei/arquivos && chown apache.apache /var/sei/arquivos && chmod 777 /tmp
